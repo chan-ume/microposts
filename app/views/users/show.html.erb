@@ -8,6 +8,27 @@
             </h1>
             <p>アドレス: <%= @user.email %></p>
             <p>地域: <%= @user.country %></p>
+            
+            <div class="row">
+            <aside class="col-xs-6">
+            <h1>フォロー</h1>
+            <% @following_users.each do |following_user| %>
+            <li>
+                    <%= link_to gravatar_for(following_user, size: 50), following_user %>
+                    <span class="user"><%= link_to following_user.name, following_user %></span>
+            </li></br></br>  
+            <% end %>
+            </aside>
+            <aside class="col-xs-6">
+            <h1>フォロワー</h1>
+            <% @following_users.each do |following_user| %>
+            <li>
+                    <%= link_to gravatar_for(following_user, size: 50), following_user %>
+                    <span class="user"><%= link_to following_user.name, following_user %></span>
+            </li></br></br>  
+            <% end %>
+            </aside>
+            </div>
         </section>
   </aside>
   <div class="col-md-8">
