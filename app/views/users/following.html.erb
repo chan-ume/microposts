@@ -1,6 +1,29 @@
-<% @following_users.each do |following_user| %>
-    <li>
-        <%= link_to gravatar_for(following_user, size: 50), following_user %>
-        <span class="user"><%= link_to following_user.name, following_user %></span>
-    </li></br></br>  
-<% end %>
+<div class="row">
+   <aside class="col-md-4">
+        <section class="user_info">
+           <p class="float:left"><%= gravatar_for @user %></p>
+            <h1><%= @user.name %></h1>
+            <div>フォロー  <%= link_to @user.following_users.count, following_user_path %></div>
+            <div>フォロワー <%= link_to @user.followed_users.count, followed_user_path %></div>
+            <br clear="all">
+            
+            <p>アドレス: <%= @user.email %></p>
+            <p>地域: <%= @user.country %></p>
+            
+         </section>
+  </aside>
+  <div class="col-md-8">
+      <%= render 'follow_form' if logged_in? %>
+      <% if @user.following_users.any? %>
+          <h3>フォロー (<%= @user.following_users.count %>)</h3>
+          <ol class="microposts">
+              <% @following_users.each do |following_user| %>
+                  <li>
+                      <%= link_to gravatar_for(following_user, size: 50), following_user %>
+                      <span class="user"><%= link_to following_user.name, following_user %></span>
+                  </li></br></br>
+              <% end %>
+          </ol>
+      <% end %>
+  </div>
+</div>

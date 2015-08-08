@@ -1,25 +1,16 @@
 <div class="row">
     <aside class="col-md-4">
         <section class="user_info">
+           <p class="float:left"><%= gravatar_for @user %></p>
+            <h1><%= @user.name %></h1>
+            <div>フォロー  <%= link_to @user.following_users.count, following_user_path %></div>
+            <div>フォロワー <%= link_to @user.followed_users.count, followed_user_path %></div>
+            <br clear="all">
             
-            <%= gravatar_for @user %>
-            <h1>
-                <%= @user.name %>
-            </h1>
             <p>アドレス: <%= @user.email %></p>
             <p>地域: <%= @user.country %></p>
             
-            <div class="row">
-            <aside class="col-xs-6">
-                <h1>フォロー</h1>
-                <%= link_to @user.following_users.count, following_user_path %>
-            </aside>
-            <aside class="col-xs-6">
-                <h1>フォロワー</h1>
-                <%= link_to @user.followed_users.count, followed_user_path %>
-            </aside>
-            </div>
-        </section>
+         </section>
   </aside>
   <div class="col-md-8">
       <%= render 'follow_form' if logged_in? %>
