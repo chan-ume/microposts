@@ -32,7 +32,23 @@ class User < ActiveRecord::Base
     def following?(other_user)
         following_users.include?(other_user)
     end
+    
+    # フォローしているユーザーのpostを拾ってくる
     def feed_items
         Micropost.where(user_id: following_user_ids + [self.id])
+    end
+    
+    # ポストをお気に入りに登録する。
+    def favor(target_post)
+        favorite_relations.create(favoritepost_id: target_post.id)
+    end
+    # お気に入りに登録しているポストを解除する。
+    def unfavor(target_post)
+        favorite_relations.find_by(favoritepost_id: target_post.id).destroy
+    end
+    
+    # お気に入りにしているかどうかチェックする。
+    def favor?(target_post)
+        favorite_posts.include?(target_post)
     end
 end
