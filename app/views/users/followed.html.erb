@@ -1,5 +1,5 @@
 <div class="row">
-    <aside class="col-md-4">
+   <aside class="col-md-4">
         <section class="user_info">
            <p class="float:left"><%= gravatar_for @user %></p>
             <h1><%= @user.name %></h1>
@@ -14,11 +14,14 @@
   </aside>
   <div class="col-md-8">
       <%= render 'follow_form' if logged_in? %>
-      <% if @user.microposts.any? %>
-          <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <% if @user.followed_users.any? %>
+          <h3>フォロー (<%= @user.followed_users.count %>)</h3>
           <ol class="microposts">
-              <% @microposts.each do |micropost| %>
-                  <%= render partial: 'microposts/micropost', locals: { micropost: micropost } %>
+              <% @followed_users.each do |followed_user| %>
+                  <li>
+                      <%= link_to gravatar_for(followed_user, size: 50), followed_user %>
+                      <span class="user"><%= link_to followed_user.name, followed_user %></span>
+                  </li></br></br>
               <% end %>
           </ol>
       <% end %>
