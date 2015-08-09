@@ -1,5 +1,5 @@
 <%= form_for(current_user.favorite_relations.find_by(favoritepost_id: object.id),
              html: { method: :delete },
              remote: true) do |f| %>    
-<%= f.submit "unfavorite", class: "btn btn-warning" %>
+<%= f.submit "unfavorite", class: "btn btn-warning btn-xs" %>
 <% end %>

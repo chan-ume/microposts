@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :following, :followed]
+  before_action :set_user, only: [:edit, :update, :show, :following, :followed, :favorite]
  
   def show
     @microposts = @user.microposts
@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   
   def followed
     @followed_users  = @user.followed_users
+  end
+  
+  def favorite
+    @favorite_posts = @user.favorite_posts
   end
   
   def new

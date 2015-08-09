@@ -1,11 +1,11 @@
 <div class="row">
-    <aside class="col-md-4">
+   <aside class="col-md-4">
         <section class="user_info">
            <p class="float:left"><%= gravatar_for @user %></p>
             <h1><%= @user.name %></h1>
             <div>フォロー  <%= link_to @user.following_users.count, following_user_path %></div>
             <div>フォロワー <%= link_to @user.followed_users.count, followed_user_path %></div>
-            <div>お気に入り <%= link_to @user.favorite_posts.count, favorite_user_path %>
+              <div>お気に入り <%= link_to @user.favorite_posts.count, favorite_user_path %>
             <br clear="all">
             
             <p>アドレス: <%= @user.email %></p>
@@ -15,12 +15,10 @@
   </aside>
   <div class="col-md-8">
       <%= render 'follow_form' if logged_in? %>
-      <% if @user.microposts.any? %>
-          <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <% if @user.favorite_posts.any? %>
+          <h3>お気に入り (<%= @user.favorite_posts.count %>)</h3>
           <ol class="microposts">
-              <% @microposts.each do |micropost| %>
-                  <%= render partial: 'microposts/micropost', locals: { micropost: micropost } %>
-              <% end %>
+              <%= render @favorite_posts %>
           </ol>
       <% end %>
   </div>

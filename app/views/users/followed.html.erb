@@ -5,6 +5,7 @@
             <h1><%= @user.name %></h1>
             <div>フォロー  <%= link_to @user.following_users.count, following_user_path %></div>
             <div>フォロワー <%= link_to @user.followed_users.count, followed_user_path %></div>
+            <div>お気に入り <%= link_to @user.favorite_posts.count, favorite_user_path %>
             <br clear="all">
             
             <p>アドレス: <%= @user.email %></p>
