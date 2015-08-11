@@ -11,7 +11,7 @@
         </span>
     <div class="row">
         <div class="col-xs-3">
-            <span id="favor_form">
+            <span id="favor_form-<%= micropost.id %>">
                 <% if current_user.favor?(micropost) %>
                     <%= render 'microposts/unfavor', object: micropost %>
                 <% else %>
@@ -20,7 +20,7 @@
             </span>
         </div>
         <div class="col-xs-1">
-        <%= link_to micropost.favoriter_users.count, '#', id: "favoriters" %>
+        <%= link_to micropost.favoriter_users.count, '#', id: "favoriters-#{micropost.id}" %>
         </div>
     </div> 
 </li>

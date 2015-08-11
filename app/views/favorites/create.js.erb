@@ -1,2 +1,2 @@
-$("#favor_form").html("<%= escape_javascript(render 'microposts/unfavor', :object => @favoritepost) %>");
-$("#favoriters").html('<%= @favoritepost.favoriter_users.count %>');
+$("#favor_form-<%= @favoritepost.id %>").html("<%= escape_javascript(render 'microposts/unfavor', :object => @favoritepost) %>");
+$("#favoriters-<%= @favoritepost.id %>").html('<%= @favoritepost.favoriter_users.count %>');
